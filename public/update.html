@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Book List</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="booklistStyles.css">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+</head>
+
+
+<body>
+    <header>
+       <nav class="navbar navbar-expand-lg navbar-light bg-success">
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-item nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-item nav-link" href="#">Display Books</a>
+                    <a class="nav-item nav-link" href="#">Add Book</a>
+                    <a class="nav-item nav-link active" href="#">Edit Book</a>
+                    <a class="nav-item nav-link" href="#">Delete Book</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <h1>Book List</h1>
+    <h2>A way to list all of your books!</h2>
+
+    <div class="container">
+    <form>
+        <div class="form-group row">
+          <label for="inputEmail3" class="col-sm-1 col-form-label">Title</label>
+          <div class="col-sm-5">
+            <input type="email" class="form-control" id="inputEmail3">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="inputPassword3" class="col-sm-1 col-form-label">Author</label>
+          <div class="col-sm-5">
+            <input type="password" class="form-control" id="inputPassword3">
+          </div>
+        </div>
+        <div class="form-group row">
+            <label for="inputPassword3" class="col-sm-1 col-form-label">Pages</label>
+            <div class="col-sm-2">
+              <input type="password" class="form-control" id="inputPassword3">
+            </div>
+          </div>
+        <fieldset class="form-group">
+          <div class="row">
+            <legend class="col-form-label col-sm-1 pt-0">Category</legend>
+            <div class="col-sm-10">
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
+                <label class="form-check-label" for="gridRadios1">
+                  Fiction
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+                <label class="form-check-label" for="gridRadios2">
+                  Non-fiction
+                </label>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+        <div class="form-group row">
+          <div class="col-sm-10">
+            <button type="submit" class="btn btn-success">Update book</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+
+</body>
+
+</html>

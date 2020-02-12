@@ -1,0 +1,16 @@
+body, footer {
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+h1, h2 {
+    margin-left: 20px;
+}
+
+footer {
+    width: 100%;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    height: 6.5%;
+    background-color: #3FBF3F;
+}
