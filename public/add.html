@@ -2,77 +2,77 @@
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <title>Add a Book</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="booklistStyles.css">
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+  <meta charset="utf-8">
+  <title>Add a Book</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" href="booklistStyles.css">
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap" rel="stylesheet">
 </head>
 
 
 <body>
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #21B5B6">
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav">
-                    <a class="nav-item nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                    <a class="nav-item nav-link" href="#">Display Books</a>
-                    <a class="nav-item nav-link active" href="#">Add Book</a>
-                    <a class="nav-item nav-link" href="#">Edit Book</a>
-                    <a class="nav-item nav-link" href="#">Delete Book</a>
-                </div>
-            </div>
-        </nav>
-    </header>
-    <h1>Add a Book</h1>
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #21B5B6">
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-item nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-item nav-link" href="#">Display Books</a>
+          <a class="nav-item nav-link active" href="#">Add Book</a>
+          <a class="nav-item nav-link" href="#">Edit Book</a>
+          <a class="nav-item nav-link" href="#">Delete Book</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <h1>Add a Book</h1>
 
-    <div class="container">
+  <div class="container">
     <form action="connect.php" method="POST">
-        <div class="form-group row">
-          <label for="title" class="col-sm-1 col-form-label">Title</label>
-          <div class="col-sm-5">
-            <input type="text" class="form-control" id="title" name="title">
-          </div>
+      <div class="form-group row">
+        <label for="title" class="col-sm-1 col-form-label">Title</label>
+        <div class="col-sm-5">
+          <input type="text" class="form-control" id="title" name="title">
         </div>
-        <div class="form-group row">
-          <label for="author" class="col-sm-1 col-form-label">Author</label>
-          <div class="col-sm-5">
-            <input type="text" class="form-control" id="author">
-          </div>
+      </div>
+      <div class="form-group row">
+        <label for="author" class="col-sm-1 col-form-label">Author</label>
+        <div class="col-sm-5">
+          <input type="text" class="form-control" id="author">
         </div>
-        <div class="form-group row">
-            <label for="pages" class="col-sm-1 col-form-label">Pages</label>
-            <div class="col-sm-2">
-              <input type="text" class="form-control" id="pages">
-            </div>
-          </div>
-        <fieldset class="form-group">
-          <div class="row">
-            <legend class="col-form-label col-sm-1 pt-0">Category</legend>
-            <div class="col-sm-10">
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="category" id="category" value="F" checked>
-                <label class="form-check-label" for="category">
-                  Fiction
-                </label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="category" id="category" value="NF">
-                <label class="form-check-label" for="category">
-                  Non-fiction
-                </label>
-              </div>
-            </div>
-          </div>
-        </fieldset>
-        <div class="form-group row">
+      </div>
+      <div class="form-group row">
+        <label for="pages" class="col-sm-1 col-form-label">Pages</label>
+        <div class="col-sm-2">
+          <input type="text" class="form-control" id="pages">
+        </div>
+      </div>
+      <fieldset class="form-group">
+        <div class="row">
+          <legend class="col-form-label col-sm-1 pt-0">Category</legend>
           <div class="col-sm-10">
-            <button type="submit" class="btn btn-outline-info">Add book</button>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="category" id="category" value="F" checked>
+              <label class="form-check-label" for="category">
+                Fiction
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="category" id="category" value="NF">
+              <label class="form-check-label" for="category">
+                Non-fiction
+              </label>
+            </div>
           </div>
         </div>
-      </form>
-    </div>
+      </fieldset>
+      <div class="form-group row">
+        <div class="col-sm-10">
+          <button type="submit" class="btn btn-outline-info">Add book</button>
+        </div>
+      </div>
+    </form>
+  </div>
 
 </body>
 
