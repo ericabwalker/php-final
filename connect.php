@@ -1,4 +1,6 @@
 <?php
+// $db = new PDO();
+
   $title = $_POST['title'];
   $author = $_POST['author']; 
   $pages = $_POST['pages'];
@@ -10,5 +12,3 @@
 
   $stmt->bind_param("ssis", $title, $author, $pages, $category);
   $stmt->execute();
-  
-  ?>
