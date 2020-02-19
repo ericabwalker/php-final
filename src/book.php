@@ -26,36 +26,33 @@ class Book
         $sql = 'SELECT title, author, pages, category FROM Books WHERE bookID = ?';
         $statement = $book->database->prepare($sql);
         $statement->execute([$bookID]);
-        $row = $statement->fetch();
-        if ($row === false) {
+        $book = $statement->fetch();
+        if ($book === false) {
             return null;
         }
-        $book->title = $row['title'];
-        $book->author = $row['author'];
-        $book->pages = $row['pages'];
-        $book->category = $row['category'];
+        $book->title = $book['title'];
+        $book->author = $book['author'];
+        $book->pages = $book['pages'];
+        $book->category = $book['category'];
         return $book;
     }
 
-    public static function findAll()
+    public static function findAll(): ?array
     {
         $book = new static();
         $sql = 'SELECT title, author, pages, category FROM Books ORDER BY title';
         $statement = $book->database->query($sql);
-        foreach ($statement as $row) {
-            print $row['title'] . "\t";
-            print $row['author'] . "\t";
-            print $row['pages'] . "\t";
-            print $row['category'] . "\t";
-        }
+        $all_books = [];
+        $all_books = $statement->fetchAll();
+        return $all_books;
     }
 
 
-    // The model's save function should return true or false if an insert or update was successful, and should validate the 
-    // model prior to attempting to save. If the model is invalid, the save() should not complete and should return false.
+// The model's save function should return true or false if an insert or update was successful, and should validate the 
+// model prior to attempting to save. If the model is invalid, the save() should not complete and should return false.
 
-    // If a model does not save for some reason, the user should be returned to the create or update view and be shown 
-    // the errors.
+// If a model does not save for some reason, the user should be returned to the create or update view and be shown 
+// the errors.
     public function save($title, $author, $pages, $category, $bookID = null)
     {
         if ($bookID == null) {

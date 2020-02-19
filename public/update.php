@@ -1,4 +1,8 @@
-<?php include "templates/header.php"; ?>
+<?php 
+include "templates/header.php"; 
+include "../controller.php"
+
+?>
 <h1>Edit a Book</h1>
 
 <div class="container">
