@@ -27,7 +27,6 @@ if (isset($_POST['submit'])) {
     <tbody>
       <?php
       $controller = new Controller();
-
       $result = $controller->display_books();
       foreach ($result as $row) {
         echo "<tr> <td>" . $row[0] . "</td><td>" . $row[1] . "</td><td>" .

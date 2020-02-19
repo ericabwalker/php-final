@@ -1,29 +1,39 @@
-<?php 
-include "templates/header.php"; 
-include "../controller.php"
+<?php
+include "templates/header.php";
+include "../controller.php";
 
+if (isset($_POST['submit'])) {
+  try {
+    $controller = new Controller();
+    $result = $controller->display_titles();
+  } catch (PDOException $e) {
+    echo 'Connection failed: ' . $e->getMessage();
+  }
+}
 ?>
-  <h1>Delete a Book</h1>
+<h1>Delete a Book</h1>
 
-  <div class="container">
-    <form>
-      <div class="form-group">
-        <label for="exampleFormControlSelect1">Select title to delete</label>
-        <select class="form-control" id="exampleFormControlSelect1">
-          <option>Title 1</option>
-          <option>Title 2</option>
-          <option>Title 3</option>
-          <option>Title 4</option>
-          <option>Title 5</option>
-        </select>
+<div class="container">
+  <form method="POST">
+    <div class="form-group">
+      <label for="exampleFormControlSelect1">Select title to delete</label>
+      <select class="form-control" id="exampleFormControlSelect1">
+        <?php
+        $controller = new Controller();
+        $result = $controller->display_books();
+        foreach ($result as $title) {
+          echo "<option>" . $title[0] . "</option>";
+        }
+        ?>
+      </select>
+    </div>
+    <div class="form-group row">
+      <div class="col-sm-10">
+        <button type="submit" class="btn btn-outline-info">Delete book</button>
       </div>
-      <div class="form-group row">
-        <div class="col-sm-10">
-          <button type="submit" class="btn btn-outline-info">Delete book</button>
-        </div>
-      </div>
-    </form>
-  </div>
+    </div>
+  </form>
+</div>
 
 </body>
 

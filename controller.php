@@ -13,12 +13,13 @@ class Controller
         $new_book->save($title, $author, $pages, $category);
     }
 
-    function display_books() {
+    function display_books()
+    {
         $books = new Book;
         $all_books = [];
         $all_books = $books->findAll();
         $display_books = [];
-        foreach($all_books as $row) {
+        foreach ($all_books as $row) {
             $title = $row['title'];
             $author = $row['author'];
             $pages = $row['pages'];
@@ -26,5 +27,18 @@ class Controller
             array_push($display_books, [$title, $author, $pages, $category]);
         }
         return $display_books;
+    }
+
+    function display_titles()
+    {
+        $books = new Book;
+        $all_books = [];
+        $all_books = $books->findAll();
+        $display_titles = [];
+        foreach ($all_books as $row) {
+            $title = $row['title'];
+            array_push($display_books, [$title]);
+        }
+        return $display_titles;
     }
 }
