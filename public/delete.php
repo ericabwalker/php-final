@@ -6,6 +6,7 @@ if (isset($_POST['submit'])) {
   try {
     $controller = new Controller();
     $result = $controller->display_titles();
+    // $controller->delete_book($selected_title);
   } catch (PDOException $e) {
     echo 'Connection failed: ' . $e->getMessage();
   }
@@ -22,7 +23,7 @@ if (isset($_POST['submit'])) {
         $controller = new Controller();
         $result = $controller->display_books();
         foreach ($result as $title) {
-          echo "<option>" . $title[0] . "</option>";
+          echo "<option value=$title[0]>" . $title[0] . "</option>";
         }
         ?>
       </select>

@@ -41,4 +41,11 @@ class Controller
         }
         return $display_titles;
     }
+
+    function delete_book($title)
+    {
+        //the title that is selected onn delete.php, pass that title to destroy method 
+        $book = new Book();
+        $book->destroy($title);
+    }
 }
