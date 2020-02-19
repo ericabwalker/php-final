@@ -51,11 +51,11 @@ class Book
     }
 
 
-// The model's save function should return true or false if an insert or update was successful, and should validate the 
-// model prior to attempting to save. If the model is invalid, the save() should not complete and should return false.
+    // The model's save function should return true or false if an insert or update was successful, and should validate the 
+    // model prior to attempting to save. If the model is invalid, the save() should not complete and should return false.
 
-// If a model does not save for some reason, the user should be returned to the create or update view and be shown 
-// the errors.
+    // If a model does not save for some reason, the user should be returned to the create or update view and be shown 
+    // the errors.
     public function save($title, $author, $pages, $category, $bookID = null)
     {
         if ($bookID == null) {
@@ -104,14 +104,3 @@ class Book
         return $errors;
     }
 }
-
-
-$testBook = new Book();
-$testBook->findAll();
-// $testBook->find(1);
-// Book::find(2);
-// var_export(Book::find(1));
-// $testBook->destroy('Book Bacon BROKE');
-
-$addBook = new Book();
-$addBook->save('Pride and Prejudice', 'Jane Austen', 750, 'F', 16);
