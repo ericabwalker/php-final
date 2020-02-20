@@ -14,7 +14,7 @@ if (isset($_POST['submit'])) {
 ?>
 <h1>Delete a Book</h1>
 <div class="container">
-  <form action="#" method="post">
+  <form method="POST">
     <div class="form-group">
       <label for="exampleFormControlSelect1">Select title to delete</label>
       <select name="Books[]" class="form-control" id="exampleFormControlSelect1">

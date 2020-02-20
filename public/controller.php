@@ -39,6 +39,12 @@ class Controller
         $book->destroy($bookID);
     }
 
+    function display_one_book(int $bookID): ?Book 
+    {
+        $book = new Book();
+        return $book->find($bookID);
+    }
+
     function update_book($title, $author, $pages, $category, $bookID = null)
     {
         $book = new Book();
