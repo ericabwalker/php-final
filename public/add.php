@@ -1,6 +1,6 @@
 <?php
 include "templates/header.php";
-include "../controller.php";
+include "controller.php";
 
 if (isset($_POST['submit'])) {
   try {
@@ -12,7 +12,6 @@ if (isset($_POST['submit'])) {
 }
 ?>
 <h1>Add a Book</h1>
-
 <div class="container">
   <form method="POST">
     <div class="form-group row">
@@ -54,7 +53,7 @@ if (isset($_POST['submit'])) {
     </fieldset>
     <div class="form-group row">
       <div class="col-sm-10">
-        <button type="submit" name="submit" value="Submit" class="btn btn-outline-info">Add book</button>
+        <input type="submit" name="submit" class="btn btn-outline-info" value="Add Book" />
       </div>
     </div>
   </form>

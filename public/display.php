@@ -1,6 +1,6 @@
 <?php
 include "templates/header.php";
-include "../controller.php";
+include "controller.php";
 
 if (isset($_POST['submit'])) {
   try {
@@ -13,7 +13,6 @@ if (isset($_POST['submit'])) {
 ?>
 
 <h1>Display Books</h1>
-
 <div class="container">
   <table class="table" method="POST">
     <thead class="thead-light">
@@ -33,7 +32,6 @@ if (isset($_POST['submit'])) {
           $row[2] . "</td><td>" . $row[3] . "</td></tr>";
       }
       ?>
-
     </tbody>
   </table>
 </div>

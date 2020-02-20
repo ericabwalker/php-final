@@ -1,12 +1,10 @@
 <?php
-
-require 'src/book.php';
-
-//call validate on book 
-//if invalid then return errors, if valid then save and return empty errors[]
+require '../src/book.php';
 
 class Controller
 {
+    //call validate on book 
+    //if invalid then return errors, if valid then save and return empty errors[]
     function add_book($title, $author, $pages, $category)
     {
         $new_book = new Book();
@@ -32,20 +30,18 @@ class Controller
     function display_titles()
     {
         $books = new Book;
-        $all_books = [];
-        $all_books = $books->findAll();
-        $display_titles = [];
-        foreach ($all_books as $row) {
-            $title = $row['title'];
-            array_push($display_books, [$title]);
-        }
-        return $display_titles;
+        return $books->findAll();
     }
 
-    function delete_book($title)
+    function delete_book($bookID)
     {
-        //the title that is selected onn delete.php, pass that title to destroy method 
         $book = new Book();
-        $book->destroy($title);
+        $book->destroy($bookID);
+    }
+
+    function update_book($title, $author, $pages, $category, $bookID = null)
+    {
+        $book = new Book();
+        $book->save($title, $author, $pages, $category, $bookID);
     }
 }

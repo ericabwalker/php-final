@@ -40,7 +40,7 @@ class Book
     public static function findAll(): ?array
     {
         $book = new static();
-        $sql = 'SELECT title, author, pages, category FROM Books ORDER BY title';
+        $sql = 'SELECT bookID, title, author, pages, category FROM Books ORDER BY title';
         $statement = $book->database->query($sql);
         $all_books = [];
         $all_books = $statement->fetchAll();
@@ -72,11 +72,11 @@ class Book
         }
     }
 
-    public function destroy(string $title)
+    public function destroy(int $bookID)
     {
-        $sql = 'DELETE FROM Books WHERE title = ?';
+        $sql = 'DELETE FROM Books WHERE bookID = ?';
         $statement = $this->database->prepare($sql);
-        $statement->execute([$title]);
+        $statement->execute([$bookID]);
     }
 
     // Validates properties on the model using a validate() function which returns true or false as to 

@@ -1,12 +1,44 @@
-<?php 
-include "templates/header.php"; 
-include "../controller.php"
+<?php
+include "templates/header.php";
+include "controller.php";
 
+if (isset($_POST['submit'])) {
+  try {
+    $controller = new Controller();
+    $bookID = $_POST['Books'][0];
+    $controller->delete_book($bookID);
+  } catch (PDOException $e) {
+    echo 'Connection failed: ' . $e->getMessage();
+  }
+}
 ?>
+
+
 <h1>Edit a Book</h1>
 
 <div class="container">
   <form>
+    <div class="form-group">
+      <label for="exampleFormControlSelect1">Select title to update</label>
+      <select name="Books[]" class="form-control" id="exampleFormControlSelect1">
+        <?php
+        $controller = new Controller();
+        $books = $controller->display_titles();
+        foreach ($books as $book) {
+          $bookID = $book['bookID'];
+          $title = $book['title'];
+          echo "<option value=$bookID> $title </option>";
+        }
+        ?>
+      </select>
+    </div>
+    <div class="form-group row">
+      <div class="col-sm-10">
+        <input type="submit" class="btn btn-outline-info" value="Select Book" />
+      </div>
+    </div>
+
+
     <div class="form-group row">
       <label for="inputEmail3" class="col-sm-1 col-form-label">Title</label>
       <div class="col-sm-5">
@@ -46,13 +78,10 @@ include "../controller.php"
     </fieldset>
     <div class="form-group row">
       <div class="col-sm-10">
-        <button type="submit" class="btn btn-outline-info">Update book</button>
+        <input type="submit" class="btn btn-outline-info" value="Update Book"/>
       </div>
     </div>
   </form>
 </div>
-
-
 </body>
-
 </html>
