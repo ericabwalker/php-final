@@ -6,7 +6,7 @@ if (isset($_POST['submit'])) {
   try {
     $controller = new Controller();
     // $bookID = $_POST['Books'][0];
-    // $controller->display_one_book($bookID);
+    $book_to_edit = $controller->display_one_book($bookID);
   } catch (PDOException $e) {
     echo 'Connection failed: ' . $e->getMessage();
   }
@@ -18,34 +18,10 @@ if (isset($_POST['submit'])) {
 
 <div class="container">
   <form method="POST">
-    <div class="form-group">
-      <label for="exampleFormControlSelect1">Select title to update</label>
-      <select name="Books[]" class="form-control" id="exampleFormControlSelect1">
-        <?php
-        $controller = new Controller();
-        $books = $controller->display_titles();
-        foreach ($books as $book) {
-          $bookID = $book['bookID'];
-          $title = $book['title'];
-          echo "<option value=$bookID> $title </option>";
-        }
-        ?>
-      </select>
-    </div>
-    <div class="form-group row">
-      <div class="col-sm-10">
-        <input type="submit" name="submit" class="btn btn-outline-info" value="Select Book" />
-      </div>
-      <div style="padding: 40px"></div>
-    </div>
-  </form>
-
-
-  <form method="POST">
     <div class="form-group row">
       <label for="inputEmail3" class="col-sm-1 col-form-label">Book ID</label>
       <div class="col-sm-5">
-        <input type="text" class="form-control" id="bookID" name="bookID" readonly>
+        <input type="text" class="form-control" id="bookID" name="bookID" value="<?php echo $book_to_edit->bookID?>"readonly>
       </div>
     </div>
     <div class="form-group row">

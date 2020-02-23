@@ -19,7 +19,7 @@
                     <a class="nav-item nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
                     <a class="nav-item nav-link" href="display.php">Display Books</a>
                     <a class="nav-item nav-link" href="add.php">Add Book</a>
-                    <a class="nav-item nav-link" href="update.php">Edit Book</a>
+                    <!-- <a class="nav-item nav-link" href="update.php">Edit Book</a> -->
                     <a class="nav-item nav-link" href="delete.php">Delete Book</a>
                 </div>
             </div>

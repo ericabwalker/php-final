@@ -22,7 +22,8 @@ class Controller
             $author = $row['author'];
             $pages = $row['pages'];
             $category = $row['category'];
-            array_push($display_books, [$title, $author, $pages, $category]);
+            $bookID = $row['bookID'];
+            array_push($display_books, [$title, $author, $pages, $category, $bookID]);
         }
         return $display_books;
     }
