@@ -37,7 +37,7 @@ if (isset($_POST['submit'])) {
         <legend class="col-form-label col-sm-1 pt-0">Category</legend>
         <div class="col-sm-10">
           <div class="form-check">
-            <input class="form-check-input" type="radio" name="category" id="category" value="F" checked>
+            <input class="form-check-input" type="radio" name="category" id="category" value="F">
             <label class="form-check-label" for="category">
               Fiction
             </label>

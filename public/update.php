@@ -48,13 +48,17 @@ if (isset($_GET['bookID'])) {
         <legend class="col-form-label col-sm-1 pt-0">Category</legend>
         <div class="col-sm-10">
           <div class="form-check">
-            <input class="form-check-input" type="radio" name="category" id="category" value="F" checked>
+            <input class="form-check-input" type="radio" name="category" id="category" value="<?php echo $book_to_edit->category?>" 
+            <?php if($book_to_edit->category == "F") {
+              echo "checked";}?>>
             <label class="form-check-label" for="category">
               Fiction
             </label>
           </div>
           <div class="form-check">
-            <input class="form-check-input" type="radio" name="category" id="category" value="NF">
+            <input class="form-check-input" type="radio" name="category" id="category" value="<?php echo $book_to_edit->category?>"
+            <?php if($book_to_edit->category == "NF") {
+              echo "checked";}?>>
             <label class="form-check-label" for="category">
               Non-fiction
             </label>
