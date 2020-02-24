@@ -2,10 +2,11 @@
 include "templates/header.php";
 include "controller.php";
 
-if (isset($_POST['submit'])) {
+if (isset($_GET['bookID'])) {
   try {
     $controller = new Controller();
-    // $bookID = $_POST['Books'][0];
+    $book_to_edit = new Book();
+    $bookID = $_GET['bookID'];
     $book_to_edit = $controller->display_one_book($bookID);
   } catch (PDOException $e) {
     echo 'Connection failed: ' . $e->getMessage();
@@ -17,7 +18,7 @@ if (isset($_POST['submit'])) {
 <h1>Edit a Book</h1>
 
 <div class="container">
-  <form method="POST">
+  <form method="GET">
     <div class="form-group row">
       <label for="inputEmail3" class="col-sm-1 col-form-label">Book ID</label>
       <div class="col-sm-5">
@@ -27,19 +28,19 @@ if (isset($_POST['submit'])) {
     <div class="form-group row">
       <label for="inputEmail3" class="col-sm-1 col-form-label">Title</label>
       <div class="col-sm-5">
-        <input type="text" class="form-control" id="title" name="title">
+        <input type="text" class="form-control" id="title" name="title" value="<?php echo $book_to_edit->title?>">
       </div>
     </div>
     <div class="form-group row">
       <label for="inputPassword3" class="col-sm-1 col-form-label">Author</label>
       <div class="col-sm-5">
-        <input type="text" class="form-control" id="author" name="author">
+        <input type="text" class="form-control" id="author" name="author" value="<?php echo $book_to_edit->author?>">
       </div>
     </div>
     <div class="form-group row">
       <label for="inputPassword3" class="col-sm-1 col-form-label">Pages</label>
       <div class="col-sm-2">
-        <input type="text" class="form-control" id="pages" name="pages">
+        <input type="text" class="form-control" id="pages" name="pages" value="<?php echo $book_to_edit->pages?>">
       </div>
     </div>
     <fieldset class="form-group">

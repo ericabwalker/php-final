@@ -30,11 +30,13 @@ class Book
         if ($book === false) {
             return null;
         }
-        $book->title = $book['title'];
-        $book->author = $book['author'];
-        $book->pages = $book['pages'];
-        $book->category = $book['category'];
-        return $book;
+        $foundBook = new Book();
+        $foundBook->bookID = $bookID;
+        $foundBook->title = $book['title'];
+        $foundBook->author = $book['author'];
+        $foundBook->pages = $book['pages'];
+        $foundBook->category = $book['category'];
+        return $foundBook;
     }
 
     public static function findAll(): ?array
