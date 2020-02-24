@@ -46,7 +46,7 @@ class Controller
         return $book->find($bookID);
     }
 
-    function update_book($title, $author, $pages, $category, $bookID = null)
+    function update_book($title, $author, $pages, $category, $bookID=null)
     {
         $book = new Book();
         $book->save($title, $author, $pages, $category, $bookID);

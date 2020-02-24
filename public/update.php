@@ -12,13 +12,21 @@ if (isset($_GET['bookID'])) {
     echo 'Connection failed: ' . $e->getMessage();
   }
 }
+if (isset($_POST['submit'])) {
+  try {
+    $controller = new Controller();
+    $controller->update_book($_POST['title'], $_POST['author'], $_POST['pages'], $_POST['category'], $_POST['bookID']);
+  } catch (PDOException $e) {
+    echo 'Connection failed: ' . $e->getMessage();
+  }
+}
 ?>
 
 
 <h1>Edit a Book</h1>
 
 <div class="container">
-  <form method="GET">
+  <form method="POST">
     <div class="form-group row">
       <label for="inputEmail3" class="col-sm-1 col-form-label">Book ID</label>
       <div class="col-sm-5">
