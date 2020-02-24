@@ -16,6 +16,7 @@ if (isset($_POST['submit'])) {
   try {
     $controller = new Controller();
     $controller->update_book($_POST['title'], $_POST['author'], $_POST['pages'], $_POST['category'], $_POST['bookID']);
+    header("Location: display.php");
   } catch (PDOException $e) {
     echo 'Connection failed: ' . $e->getMessage();
   }
