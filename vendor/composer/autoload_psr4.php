@@ -6,6 +6,5 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Ericabwalker\\PHPfinal\\Controllers\\' => array($baseDir . '/resources'),
     'Ericabwalker\\PHPfinal\\' => array($baseDir . '/src'),
 );

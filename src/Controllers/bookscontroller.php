@@ -1,11 +1,7 @@
 <?php
 namespace Ericabwalker\PHPfinal\Controllers;
+
 use Ericabwalker\PHPfinal\Models\Book;
-require __DIR__.'/../vendor/autoload.php';
-
-// require '../src/book.php';
-
-
 
 class BooksController
 {
@@ -59,6 +55,6 @@ class BooksController
     }
 
     function add_book_form() {
-        
+        echo "Add form will go here";
     }
 }

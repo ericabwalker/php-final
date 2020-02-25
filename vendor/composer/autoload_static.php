@@ -9,16 +9,11 @@ class ComposerStaticInit2e2cdcd613069305cd400bf14003ab1d
     public static $prefixLengthsPsr4 = array (
         'E' => 
         array (
-            'Ericabwalker\\PHPfinal\\Controllers\\' => 34,
             'Ericabwalker\\PHPfinal\\' => 22,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
-        'Ericabwalker\\PHPfinal\\Controllers\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/resources',
-        ),
         'Ericabwalker\\PHPfinal\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src',

@@ -16,12 +16,7 @@ $routes = [
     ],
 ];
 
-
-
 $router = new Router();
 $router->get('/display', 'BooksController@display_books');
 $router->get('/add', 'BooksController@add_book_form');
 $router->execute($routes);
-
-// $uri = $_SERVER['REQUEST_URI'];
-// $method = $_SERVER['REQUEST_METHOD'];
