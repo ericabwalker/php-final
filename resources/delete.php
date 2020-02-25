@@ -1,10 +1,11 @@
 <?php
+use Ericabwalker\PHPfinal\Controllers\BooksController;
 include "templates/header.php";
-include "controller.php";
+
 
 if (isset($_POST['submit'])) {
   try {
-    $controller = new Controller();
+    $controller = new BooksController();
     $bookID = $_POST['Books'][0];
     $controller->delete_book($bookID);
   } catch (PDOException $e) {
@@ -19,7 +20,7 @@ if (isset($_POST['submit'])) {
       <label for="exampleFormControlSelect1">Select title to delete</label>
       <select name="Books[]" class="form-control" id="exampleFormControlSelect1">
         <?php
-        $controller = new Controller();
+        $controller = new BooksController();
         $books = $controller->display_titles();
         foreach ($books as $book) {
           $bookID = $book['bookID'];

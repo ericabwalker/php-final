@@ -1,10 +1,13 @@
 <?php
-use Models\Book;
+namespace Ericabwalker\PHPfinal\Controllers;
+use Ericabwalker\PHPfinal\Models\Book;
+require __DIR__.'/../vendor/autoload.php';
+
 // require '../src/book.php';
 
 
 
-class Controller
+class BooksController
 {
     //call validate on book 
     //if invalid then return errors, if valid then save and return empty errors[]
@@ -53,5 +56,9 @@ class Controller
     {
         $book = new Book();
         $book->save($title, $author, $pages, $category, $bookID);
+    }
+
+    function add_book_form() {
+        
     }
 }

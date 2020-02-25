@@ -6,14 +6,30 @@ namespace Composer\Autoload;
 
 class ComposerStaticInit2e2cdcd613069305cd400bf14003ab1d
 {
-    public static $classMap = array (
-        'Models\\Book' => __DIR__ . '/../..' . '/src/book.php',
+    public static $prefixLengthsPsr4 = array (
+        'E' => 
+        array (
+            'Ericabwalker\\PHPfinal\\Controllers\\' => 34,
+            'Ericabwalker\\PHPfinal\\' => 22,
+        ),
+    );
+
+    public static $prefixDirsPsr4 = array (
+        'Ericabwalker\\PHPfinal\\Controllers\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/resources',
+        ),
+        'Ericabwalker\\PHPfinal\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src',
+        ),
     );
 
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->classMap = ComposerStaticInit2e2cdcd613069305cd400bf14003ab1d::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit2e2cdcd613069305cd400bf14003ab1d::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit2e2cdcd613069305cd400bf14003ab1d::$prefixDirsPsr4;
 
         }, null, ClassLoader::class);
     }

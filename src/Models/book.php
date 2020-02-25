@@ -1,6 +1,6 @@
 <?php
 
-namespace Models;
+namespace Ericabwalker\PHPfinal\Models;
 use PDO;
 use PDOException; 
 

@@ -1,10 +1,12 @@
 <?php
+use Ericabwalker\PHPfinal\Controllers\BooksController;
+
 include "templates/header.php";
-include "controller.php";
+// include "controller.php";
 
 if (isset($_POST['submit'])) {
   try {
-    $controller = new Controller();
+    $controller = new BooksController();
     $result = $controller->display_books();
   } catch (PDOException $e) {
     echo 'Connection failed: ' . $e->getMessage();
@@ -26,7 +28,7 @@ if (isset($_POST['submit'])) {
     </thead>
     <tbody>
       <?php
-      $controller = new Controller();
+      $controller = new BooksController();
       $result = $controller->display_books();
       foreach ($result as $row) {
         echo "<tr> <td>" . $row[0] . "</td><td>" . $row[1] . "</td><td>" .

@@ -1,7 +1,8 @@
 {
     "autoload": {
-        "classmap": [
-            "src/"
-        ]
+        "psr-4": {
+            "Ericabwalker\\PHPfinal\\": "src",
+            "Ericabwalker\\PHPfinal\\Controllers\\": "resources"
+        }
     }
 }

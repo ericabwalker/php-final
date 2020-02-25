@@ -1,6 +1,6 @@
 <?php
 include "templates/header.php";
-include "controller.php";
+// include "controller.php";
 
 if (isset($_POST['submit'])) {
   try {
