@@ -1,5 +1,9 @@
 <?php
 
+namespace Models;
+use PDO;
+use PDOException; 
+
 class Book
 {
     public $bookID;
@@ -17,8 +21,6 @@ class Book
             echo 'Connection failed: ' . $e->getMessage();
         }
     }
-
-    //uses a namespace
 
     public static function find(int $bookID): ?Book
     {

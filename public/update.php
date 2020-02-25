@@ -1,6 +1,7 @@
 <?php
 include "templates/header.php";
 include "controller.php";
+use Models\Book;
 
 if (isset($_GET['bookID'])) {
   try {

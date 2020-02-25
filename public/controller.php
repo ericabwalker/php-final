@@ -1,5 +1,8 @@
 <?php
-require '../src/book.php';
+use Models\Book;
+// require '../src/book.php';
+
+
 
 class Controller
 {
