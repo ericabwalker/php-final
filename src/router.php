@@ -6,18 +6,17 @@ use Ericabwalker\PHPfinal\Controllers\BooksController;
 
 class Router
 {
-    public function get($uri, $action)
-    {
-    }
 
     function execute($routes)
     {
         $method = $_SERVER['REQUEST_METHOD'];
+        $requestURI = $_SERVER['REQUEST_URI'];
         foreach ($routes[$method] as $uri => $action) {
-            if ($uri == $_SERVER['REQUEST_URI']) {
-                $result = explode('@', $action);
+            $explosion = explode('?', $requestURI);
+            if ($uri == $explosion[0]) {
+                $result = explode('@', $action)[1];
                 $controller = new BooksController();
-                $controller->$result[1];
+                $controller->$result();
             }
         }
     }

@@ -16,10 +16,9 @@
         <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #21B5B6">
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                    <a class="nav-item nav-link" href="home.php">Home <span class="sr-only">(current)</span></a>
-                    <a class="nav-item nav-link" href="display.php">Display Books</a>
-                    <a class="nav-item nav-link" href="add.php">Add Book</a>
-                    <a class="nav-item nav-link" href="delete.php">Delete Book</a>
+                    <a class="nav-item nav-link" href="/display">Display Books</a>
+                    <a class="nav-item nav-link" href="/add">Add Book</a>
+                    <a class="nav-item nav-link" href="/delete">Delete Book</a>
                 </div>
             </div>
         </nav>

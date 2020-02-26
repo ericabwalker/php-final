@@ -16,7 +16,7 @@ class Book
     function __construct()
     {
         try {
-            $this->database = new PDO('mysql:dbname=bookList;host=127.0.0.1', 'root', '');
+            $this->database = new PDO('mysql:dbname=bookList;host=mysql', 'modules', 'secret');
         } catch (PDOException $e) {
             echo 'Connection failed: ' . $e->getMessage();
         }

@@ -1,17 +1,5 @@
 <?php
-use Ericabwalker\PHPfinal\Controllers\BooksController;
-
 include "templates/header.php";
-// include "controller.php";
-
-if (isset($_POST['submit'])) {
-  try {
-    $controller = new BooksController();
-    $result = $controller->display_books();
-  } catch (PDOException $e) {
-    echo 'Connection failed: ' . $e->getMessage();
-  }
-}
 ?>
 
 <h1>Display Books</h1>
@@ -28,11 +16,9 @@ if (isset($_POST['submit'])) {
     </thead>
     <tbody>
       <?php
-      $controller = new BooksController();
-      $result = $controller->display_books();
-      foreach ($result as $row) {
-        echo "<tr> <td>" . $row[0] . "</td><td>" . $row[1] . "</td><td>" .
-          $row[2] . "</td><td>" . $row[3] . "</td><td><a href=\"update.php?bookID=" . $row[4] . "\">Edit</a></td></tr>";
+      foreach ($books as $row) {
+        echo "<tr> <td>" . $row['title'] . "</td><td>" . $row['author'] . "</td><td>" .
+          $row['pages'] . "</td><td>" . $row['category'] . "</td><td><a href=\"update?bookID=" . $row['bookID'] . "\">Edit</a></td></tr>";
       }
       ?>
     </tbody>

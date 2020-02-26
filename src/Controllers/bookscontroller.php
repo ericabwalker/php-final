@@ -1,4 +1,5 @@
 <?php
+
 namespace Ericabwalker\PHPfinal\Controllers;
 
 use Ericabwalker\PHPfinal\Models\Book;
@@ -7,54 +8,71 @@ class BooksController
 {
     //call validate on book 
     //if invalid then return errors, if valid then save and return empty errors[]
-    function add_book($title, $author, $pages, $category)
+    function add_book()
     {
         $new_book = new Book();
+        $title = $_POST['title'];
+        $author = $_POST['author'];
+        $pages = $_POST['pages'];
+        $category = $_POST['category'];
         $new_book->save($title, $author, $pages, $category);
+        header("Location: /display");
     }
 
     function display_books()
     {
-        $books = new Book;
-        $all_books = [];
-        $all_books = $books->findAll();
-        $display_books = [];
-        foreach ($all_books as $row) {
-            $title = $row['title'];
-            $author = $row['author'];
-            $pages = $row['pages'];
-            $category = $row['category'];
-            $bookID = $row['bookID'];
-            array_push($display_books, [$title, $author, $pages, $category, $bookID]);
-        }
-        return $display_books;
+        $book = new Book();
+        $result = $book->findAll();
+        $this->view('display', ["books" => $result]);
     }
 
     function display_titles()
     {
+        $this->view('delete');
         $books = new Book;
         return $books->findAll();
     }
 
-    function delete_book($bookID)
+    function delete_book()
     {
         $book = new Book();
+        $bookID = $_POST['Books'][0];
         $book->destroy($bookID);
+        header("Location: /display");
     }
 
-    function display_one_book(int $bookID): ?Book 
+    function display_one_book()
     {
+        $uri = $_SERVER['REQUEST_URI'];
+        $explosion = explode('?', $uri);
+        $bookID = explode("=", $explosion[1]);
         $book = new Book();
-        return $book->find($bookID);
+        $book_to_update = $book->find($bookID[1]);
+        $this->view('update', ["book" => $book_to_update]);
     }
 
-    function update_book($title, $author, $pages, $category, $bookID=null)
+    function update_book()
     {
+        $title = $_POST['title'];
+        $author = $_POST['author'];
+        $pages = $_POST['pages'];
+        $category = $_POST['category'];
+        $uri = $_SERVER['REQUEST_URI'];
+        $explosion = explode('?', $uri);
+        $bookID = explode("=", $explosion[1]);
         $book = new Book();
-        $book->save($title, $author, $pages, $category, $bookID);
+        $book->save($title, $author, $pages, $category, $bookID[1]);
+        header("Location: /display");
     }
 
-    function add_book_form() {
-        echo "Add form will go here";
+    function add_book_form()
+    {
+        $this->view('add');
+    }
+
+    function view($page, $data = [])
+    {
+        extract($data);
+        include_once __DIR__ . '/../../resources/' . $page . '.php';
     }
 }

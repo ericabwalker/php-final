@@ -1,19 +1,9 @@
 <?php
 include "templates/header.php";
-// include "controller.php";
-
-if (isset($_POST['submit'])) {
-  try {
-    $controller = new Controller();
-    $controller->add_book($_POST['title'], $_POST['author'], $_POST['pages'], $_POST['category']);
-  } catch (PDOException $e) {
-    echo 'Connection failed: ' . $e->getMessage();
-  }
-}
 ?>
 <h1>Add a Book</h1>
 <div class="container">
-  <form method="POST">
+  <form method="POST" action="/add">
     <div class="form-group row">
       <label for="title" class="col-sm-1 col-form-label">Title</label>
       <div class="col-sm-5">

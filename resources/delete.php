@@ -1,27 +1,27 @@
 <?php
-use Ericabwalker\PHPfinal\Controllers\BooksController;
+use Ericabwalker\PHPfinal\Models\Book;
 include "templates/header.php";
 
 
-if (isset($_POST['submit'])) {
-  try {
-    $controller = new BooksController();
-    $bookID = $_POST['Books'][0];
-    $controller->delete_book($bookID);
-  } catch (PDOException $e) {
-    echo 'Connection failed: ' . $e->getMessage();
-  }
-}
+// if (isset($_POST['submit'])) {
+//   try {
+//     $controller = new BooksController();
+//     $bookID = $_POST['Books'][0];
+//     $controller->delete_book($bookID);
+//   } catch (PDOException $e) {
+//     echo 'Connection failed: ' . $e->getMessage();
+//   }
+// }
 ?>
 <h1>Delete a Book</h1>
 <div class="container">
-  <form method="POST">
+  <form method="POST" action="/delete">
     <div class="form-group">
       <label for="exampleFormControlSelect1">Select title to delete</label>
       <select name="Books[]" class="form-control" id="exampleFormControlSelect1">
         <?php
-        $controller = new BooksController();
-        $books = $controller->display_titles();
+        $book = new Book();
+        $books = $book->findAll();
         foreach ($books as $book) {
           $bookID = $book['bookID'];
           $title = $book['title'];

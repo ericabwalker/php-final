@@ -9,6 +9,8 @@ services:
             - modules
     web:
         image: gentux/nginx:fpm
+        volumes:
+            - ./:/var/www
         ports:
             - "80:80"
         links:
@@ -18,7 +20,7 @@ services:
     mysql:
         image: mysql:5.6
         environment:
-            MYSQL_DATABASE: "modules"
+            MYSQL_DATABASE: "bookList"
             MYSQL_USER: "modules"
             MYSQL_PASSWORD: "secret"
             MYSQL_ROOT_PASSWORD: "secret"
