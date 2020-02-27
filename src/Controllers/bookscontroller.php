@@ -1,5 +1,4 @@
 <?php
-
 namespace Ericabwalker\PHPfinal\Controllers;
 
 use Ericabwalker\PHPfinal\Models\Book;
@@ -18,12 +17,11 @@ class BooksController
         $new_book->pages = $pages;
         $new_book->category = $category;
         $result = $new_book->save();
-        if ($result == true) {
-            header("Location: /display");
-        } else {
-            header("Location: /add");
-            echo implode($new_book->errors());
-        }
+        // var_dump($new_book->errors);
+        if ($result === false) {
+            return $this->view('add', [], $new_book->errors);
+        } 
+        header("Location: display");  
     }
 
     function display_books()
@@ -79,7 +77,6 @@ class BooksController
             header("Location: /display");
         } else {
             header("Location: /update?bookID=" .  $updatedbook->bookID);
-            var_dump($updatedbook->errors());
         }
     }
 
@@ -88,7 +85,7 @@ class BooksController
         $this->view('add');
     }
 
-    function view($page, $data = [])
+    function view($page, $data = [], $errors = [])
     {
         extract($data);
         include_once __DIR__ . '/../../resources/' . $page . '.php';

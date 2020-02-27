@@ -13,6 +13,7 @@ class Book
     public $pages;
     public $category;
     public $database;
+    public $errors = [];
 
     function __construct()
     {
@@ -102,14 +103,14 @@ class Book
         if (count($errors) == 0) {
             return true;
         } else {
-            $this->errors($errors);
+            $this->set_errors($errors);
             return false;
         }
     }
 
-    public function errors(): ?array
+    public function set_errors($error): ?array
     {
-        $errors = [];
-        return $errors;
+        $this->errors = array_merge($this->errors, $error);
+        return $this->errors;
     }
 }
