@@ -1,8 +1,9 @@
 <?php
 
 namespace Ericabwalker\PHPfinal\Models;
+
 use PDO;
-use PDOException; 
+use PDOException;
 
 class Book
 {
@@ -52,27 +53,29 @@ class Book
     }
 
 
-// The model's save function should return true or false if an insert or update was successful, and should validate the 
-// model prior to attempting to save. If the model is invalid, the save() should not complete and should return false.
 
-// If a model does not save for some reason, the user should be returned to the create or update view and be shown 
-// the errors.
-    public function save($title, $author, $pages, $category, $bookID = null)
+    // If a model does not save for some reason, the user should be returned to the create or update view and be shown 
+    // the errors.
+    public function save()
     {
-        if ($bookID == null) {
-            $sql = 'INSERT INTO Books (title, author, pages, category) VALUES (?,?,?,?)';
-            $statement = $this->database->prepare($sql);
-            $statement->execute([$title, $author, $pages, $category]);
-            return;
+        if ($this->validate()) {
+            if ($this->bookID == null) {
+                $sql = 'INSERT INTO Books (title, author, pages, category) VALUES (?,?,?,?)';
+                $statement = $this->database->prepare($sql);
+                $statement->execute([$this->title, $this->author, $this->pages, $this->category]);
+            } else {
+                $sql = 'UPDATE Books SET title=?, author=?, pages=?, category=? WHERE bookID = ?';
+                $statement = $this->database->prepare($sql);
+                $statement->bindValue(":title", $this->title, PDO::PARAM_STR);
+                $statement->bindValue(":author", $this->author, PDO::PARAM_STR);
+                $statement->bindValue(":pages", $this->pages, PDO::PARAM_INT);
+                $statement->bindValue(":category", $this->category, PDO::PARAM_STR);
+                $statement->bindValue(":bookID", $this->bookID, PDO::PARAM_INT);
+                $statement->execute([$this->title, $this->author, $this->pages, $this->category, $this->bookID]);
+            }
+            return true;
         } else {
-            $sql = 'UPDATE Books SET title=?, author=?, pages=?, category=? WHERE bookID = ?';
-            $statement = $this->database->prepare($sql);
-            $statement->bindValue(":title", $title, PDO::PARAM_STR);
-            $statement->bindValue(":author", $author, PDO::PARAM_STR);
-            $statement->bindValue(":pages", $pages, PDO::PARAM_INT);
-            $statement->bindValue(":category", $category, PDO::PARAM_STR);
-            $statement->bindValue(":bookID", $bookID, PDO::PARAM_INT);
-            $statement->execute([$title, $author, $pages, $category, $bookID]);
+            return false;
         }
     }
 
@@ -83,25 +86,27 @@ class Book
         $statement->execute([$bookID]);
     }
 
-    // Validates properties on the model using a validate() function which returns true or false as to 
-    // whether or not the model is valid
-
     // The model's validate() function should feed data to an errors() function that returns an array 
     // of errors (if any)
     public function validate()
     {
-        $validateBook = new Book();
-        if (true) {
+        $errors = [];
+        if (gettype($this->title) != "string") {
+            $errors[] = "Property 'title' must be of type string.";
+        }
+        if (gettype($this->author) != "string") {
+            $errors[] = "Property 'author' must be of type string.";
+        }
+        if (gettype($this->pages) != "string") {
+            $errors[] = "Property 'pages' must be of type string.";
+        }
+        if (gettype($this->category) != "string") {
+            $errors[] = "Property 'category' must be of type string.";
+        }
+        if (count($errors) == 0) {
             return true;
         } else {
-            $validateBook->errors();
             return false;
         }
-    }
-
-    public function errors(): ?array
-    {
-        $errors = [];
-        return $errors;
     }
 }

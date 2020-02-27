@@ -6,8 +6,6 @@ use Ericabwalker\PHPfinal\Models\Book;
 
 class BooksController
 {
-    //call validate on book 
-    //if invalid then return errors, if valid then save and return empty errors[]
     function add_book()
     {
         $new_book = new Book();
@@ -15,7 +13,11 @@ class BooksController
         $author = $_POST['author'];
         $pages = $_POST['pages'];
         $category = $_POST['category'];
-        $new_book->save($title, $author, $pages, $category);
+        $new_book->title = $title;
+        $new_book->author = $author;
+        $new_book->pages = $pages;
+        $new_book->category = $category;
+        $new_book->save();
         header("Location: /display");
     }
 
@@ -60,8 +62,13 @@ class BooksController
         $uri = $_SERVER['REQUEST_URI'];
         $explosion = explode('?', $uri);
         $bookID = explode("=", $explosion[1]);
-        $book = new Book();
-        $book->save($title, $author, $pages, $category, $bookID[1]);
+        $updatedbook = new Book();
+        $updatedbook->bookID = $bookID[1];
+        $updatedbook->title = $title;
+        $updatedbook->author = $author;
+        $updatedbook->pages = $pages;
+        $updatedbook->category = $category;
+        $updatedbook->save();
         header("Location: /display");
     }
 
