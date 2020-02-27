@@ -17,8 +17,13 @@ class BooksController
         $new_book->author = $author;
         $new_book->pages = $pages;
         $new_book->category = $category;
-        $new_book->save();
-        header("Location: /display");
+        $result = $new_book->save();
+        if ($result == true) {
+            header("Location: /display");
+        } else {
+            header("Location: /add");
+            echo implode($new_book->errors());
+        }
     }
 
     function display_books()
@@ -67,9 +72,15 @@ class BooksController
         $updatedbook->title = $title;
         $updatedbook->author = $author;
         $updatedbook->pages = $pages;
+        //category only one not updating
         $updatedbook->category = $category;
-        $updatedbook->save();
-        header("Location: /display");
+        $result = $updatedbook->save();
+        if ($result == true) {
+            header("Location: /display");
+        } else {
+            header("Location: /update?bookID=" .  $updatedbook->bookID);
+            var_dump($updatedbook->errors());
+        }
     }
 
     function add_book_form()

@@ -52,10 +52,6 @@ class Book
         return $all_books;
     }
 
-
-
-    // If a model does not save for some reason, the user should be returned to the create or update view and be shown 
-    // the errors.
     public function save()
     {
         if ($this->validate()) {
@@ -91,22 +87,29 @@ class Book
     public function validate()
     {
         $errors = [];
-        if (gettype($this->title) != "string") {
-            $errors[] = "Property 'title' must be of type string.";
+        if ($this->title == null) {
+            $errors[] = "Property 'title' must not be null.";
         }
-        if (gettype($this->author) != "string") {
-            $errors[] = "Property 'author' must be of type string.";
+        if ($this->author == null) {
+            $errors[] = "Property 'author' must not be null.";
         }
-        if (gettype($this->pages) != "string") {
-            $errors[] = "Property 'pages' must be of type string.";
+        if ($this->pages == null) {
+            $errors[] = "Property 'pages' must not be null.";
         }
-        if (gettype($this->category) != "string") {
-            $errors[] = "Property 'category' must be of type string.";
+        if ($this->category == null) {
+            $errors[] = "Property 'category' must not be null.";
         }
         if (count($errors) == 0) {
             return true;
         } else {
+            $this->errors($errors);
             return false;
         }
+    }
+
+    public function errors(): ?array
+    {
+        $errors = [];
+        return $errors;
     }
 }
