@@ -87,25 +87,24 @@ class Book
     // of errors (if any)
     public function validate()
     {
-        $errors = [];
+        $errors_list = [];
         if ($this->title == null) {
-            $errors[] = "Property 'title' must not be null.";
+            $errors_list['title'] = "Property 'title' must not be null.";
         }
         if ($this->author == null) {
-            $errors[] = "Property 'author' must not be null.";
+            $errors_list['author'] = "Property 'author' must not be null.";
         }
         if ($this->pages == null) {
-            $errors[] = "Property 'pages' must not be null.";
+            $errors_list['pages'] = "Property 'pages' must not be null.";
         }
         if ($this->category == null) {
-            $errors[] = "Property 'category' must not be null.";
+            $errors_list['category'] = "Property 'category' must not be null.";
         }
-        if (count($errors) == 0) {
-            return true;
-        } else {
-            $this->set_errors($errors);
+        if (count($errors_list) > 0) {
+            $this->set_errors($errors_list);
             return false;
         }
+        return true;
     }
 
     public function set_errors($error): ?array

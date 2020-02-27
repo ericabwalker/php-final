@@ -1,5 +1,7 @@
 <?php
 include "templates/header.php";
+// what this will do is pull each key ex(title) into a variable ex($title)
+extract($errors);
 ?>
 <h1>Add a Book</h1>
 <div class="container">
@@ -7,19 +9,22 @@ include "templates/header.php";
     <div class="form-group row">
       <label for="title" class="col-sm-1 col-form-label">Title</label>
       <div class="col-sm-5">
-        <input type="text" class="form-control" id="title" name="title">
+        <input type="text" class="<?php echo isset($title) ? 'form-control is-invalid' : 'form-control';?>"  id="title" name="title">
+        <?php echo isset($title) ? "<div class=\"invalid-feedback\">$title</div>" : "";?>
       </div>
     </div>
     <div class="form-group row">
       <label for="author" class="col-sm-1 col-form-label">Author</label>
       <div class="col-sm-5">
-        <input type="text" class="form-control" id="author" name="author">
+      <input type="text" class="<?php echo isset($author) ? 'form-control is-invalid' : 'form-control';?>"  id="author" name="author">
+        <?php echo isset($author) ? "<div class=\"invalid-feedback\">$author</div>" : "";?>
       </div>
     </div>
     <div class="form-group row">
       <label for="pages" class="col-sm-1 col-form-label">Pages</label>
       <div class="col-sm-2">
-        <input type="text" class="form-control" id="pages" name="pages">
+      <input type="text" class="<?php echo isset($pages) ? 'form-control is-invalid' : 'form-control';?>"  id="pages" name="pages">
+        <?php echo isset($pages) ? "<div class=\"invalid-feedback\">$pages</div>" : "";?>
       </div>
     </div>
     <fieldset class="form-group">
@@ -33,7 +38,9 @@ include "templates/header.php";
             </label>
           </div>
           <div class="form-check">
-            <input class="form-check-input" type="radio" name="category" id="category" value="NF">
+  
+            <input type="radio" name="category" id="category" value="NF" class="<?php echo isset($category) ? 'form-check-input is-invalid' : 'form-check-input';?>"  id="category" name="category">
+            <?php echo isset($category) ? "<div class=\"invalid-feedback\">$category</div>" : "";?>
             <label class="form-check-label" for="category">
               Non-fiction
             </label>
