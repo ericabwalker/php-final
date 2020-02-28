@@ -1,4 +1,5 @@
 <?php
+
 namespace Ericabwalker\PHPfinal\Controllers;
 
 use Ericabwalker\PHPfinal\Models\Book;
@@ -7,21 +8,20 @@ class BooksController
 {
     function add_book()
     {
-        $new_book = new Book();
         $title = $_POST['title'];
         $author = $_POST['author'];
         $pages = $_POST['pages'];
         $category = $_POST['category'];
+        $new_book = new Book();
         $new_book->title = $title;
         $new_book->author = $author;
         $new_book->pages = $pages;
         $new_book->category = $category;
         $result = $new_book->save();
-        // var_dump($new_book->errors);
         if ($result === false) {
             return $this->view('add', [], $new_book->errors);
-        } 
-        header("Location: display");  
+        }
+        header("Location: display");
     }
 
     function display_books()
@@ -70,15 +70,15 @@ class BooksController
         $updatedbook->title = $title;
         $updatedbook->author = $author;
         $updatedbook->pages = $pages;
-        //category only one not updating
         $updatedbook->category = $category;
         $result = $updatedbook->save();
-        if ($result == true) {
-            header("Location: /display");
+        if ($result === false) {
+            return $this->view('update', [], $updatedbook->errors);
         } else {
-            header("Location: /update?bookID=" .  $updatedbook->bookID);
+            header("Location: /display");
         }
     }
+
 
     function add_book_form()
     {

@@ -83,8 +83,6 @@ class Book
         $statement->execute([$bookID]);
     }
 
-    // The model's validate() function should feed data to an errors() function that returns an array 
-    // of errors (if any)
     public function validate()
     {
         $errors_list = [];
