@@ -73,7 +73,7 @@ class BooksController
         $updatedbook->category = $category;
         $result = $updatedbook->save();
         if ($result === false) {
-            return $this->view('update', [], $updatedbook->errors);
+            return $this->view('update', ["book" => $updatedbook], $updatedbook->errors);
         } else {
             header("Location: /display");
         }
