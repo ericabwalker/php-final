@@ -38,7 +38,7 @@ extract($errors);
             </label>
           </div>
           <div class="form-check">
-            <input type="radio" name="category" id="category" value="NF" class="<?php echo isset($category) ? 'form-check-input is-invalid' : 'form-check-input'; ?>" id="category" name="category">
+            <input class="<?php echo isset($category) ? 'form-check-input is-invalid' : 'form-check-input'; ?>" type="radio" name="category" id="category" value="NF">
             <label class="form-check-label" for="category">
               Non-fiction
             </label>

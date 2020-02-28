@@ -79,7 +79,6 @@ class BooksController
         }
     }
 
-
     function add_book_form()
     {
         $this->view('add');

@@ -22,7 +22,7 @@ extract($errors);
     <div class="form-group row">
       <label for="author" class="col-sm-1 col-form-label">Author</label>
       <div class="col-sm-5">
-        <input type="text" class="<?php echo isset($author) ? 'form-control is-invalid' : 'form-control'; ?> id="author" name="author" value="<?php echo $book->author?>">
+        <input type="text" class="<?php echo isset($author) ? 'form-control is-invalid' : 'form-control'; ?>" id="author" name="author" value="<?php echo $book->author?>">
         <?php echo isset($author) ? "<div class=\"invalid-feedback\">$author</div>" : ""; ?>
       </div>
     </div>
@@ -38,28 +38,21 @@ extract($errors);
         <legend class="col-form-label col-sm-1 pt-0">Category</legend>
         <div class="col-sm-10">
           <div class="form-check">
-            <input class="<?php echo isset($category) ? 'form-check-input is-invalid' : 'form-check-input'; ?>" type="radio" name="category" id="category" value="<?php echo $book->category?>" 
-            <?php if($book->category == "F") {
-              echo "checked";}?>>
-            <label class="form-check-label" for="category">
-              Fiction
-            </label>
+            <input class="form-check-input" type="radio" name="category" id="category" value="F" 
+            <?php if($book->category == "F") {echo "checked";}?>>
+            <label class="form-check-label" for="category">Fiction</label>
           </div>
           <div class="form-check">
-            <input class="<?php echo isset($category) ? 'form-check-input is-invalid' : 'form-check-input'; ?>" type="radio" name="category" id="category" value="<?php echo $book->category?>"
-            <?php if($book->category == "NF") {
-              echo "checked";}?>>
-            <label class="form-check-label" for="category">
-              Non-fiction
-            </label>
-            <?php echo isset($category) ? "<div class=\"invalid-feedback\">$category</div>" : ""; ?>
+            <input class="form-check-input" type="radio" name="category" id="category" value="NF"
+            <?php if($book->category == "NF") {echo "checked";}?>>
+            <label class="form-check-label" for="category">Non-fiction</label>
           </div>
         </div>
       </div>
     </fieldset>
     <div class="form-group row">
       <div class="col-sm-10">
-        <input type="submit" name="submit" class="btn btn-outline-info" value="Update Book" />
+        <input type="submit" name="submit" class="btn btn-outline-info" value="Update Book"/>
       </div>
     </div>
   </form>
