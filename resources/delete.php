@@ -1,17 +1,6 @@
 <?php
 use Ericabwalker\PHPfinal\Models\Book;
 include "templates/header.php";
-
-
-// if (isset($_POST['submit'])) {
-//   try {
-//     $controller = new BooksController();
-//     $bookID = $_POST['Books'][0];
-//     $controller->delete_book($bookID);
-//   } catch (PDOException $e) {
-//     echo 'Connection failed: ' . $e->getMessage();
-//   }
-// }
 ?>
 <h1>Delete a Book</h1>
 <div class="container">
@@ -32,10 +21,16 @@ include "templates/header.php";
     </div>
     <div class="form-group row">
       <div class="col-sm-10">
-        <input type="submit" name="submit" class="btn btn-outline-info" value="Delete Book" />
+        <input type="submit" name="submit" class="btn btn-outline-info" value="Delete Book" 
+        <?php 
+        $book = new Book();
+        $books = $book->findAll();
+        if(count($books) == 0) 
+        {echo "disabled";}?>/>
       </div>
     </div>
   </form>
 </div>
 </body>
+
 </html>
