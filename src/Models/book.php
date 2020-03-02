@@ -76,6 +76,17 @@ class Book
         }
     }
 
+    public function update(int $bookID)
+    {
+        $book = new Book();
+        $result = $book->find($bookID);
+        if ($result == null) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
     public function destroy(int $bookID)
     {
         $sql = 'DELETE FROM Books WHERE bookID = ?';

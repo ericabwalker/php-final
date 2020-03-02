@@ -67,11 +67,16 @@ class BooksController
         $bookID = explode("=", $explosion[1]);
         $updatedbook = new Book();
         $updatedbook->bookID = $bookID[1];
-        $updatedbook->title = $title;
-        $updatedbook->author = $author;
-        $updatedbook->pages = $pages;
-        $updatedbook->category = $category;
-        $result = $updatedbook->save();
+        $update_result = $updatedbook->update((int)$bookID[1]);
+        if ($update_result == true) {
+            $updatedbook->title = $title;
+            $updatedbook->author = $author;
+            $updatedbook->pages = $pages;
+            $updatedbook->category = $category;
+            $result = $updatedbook->save();
+        } else {
+            header("Location: /display");
+        }
         if ($result === false) {
             return $this->view('update', ["book" => $updatedbook], $updatedbook->errors);
         } else {
