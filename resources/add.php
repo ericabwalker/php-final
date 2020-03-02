@@ -32,14 +32,19 @@ extract($errors);
         <legend class="col-form-label col-sm-1 pt-0">Category</legend>
         <div class="col-sm-10">
           <div class="form-check">
-          <input class="form-check-input" type="radio" name="category" id="category" value="F" 
-            <?php if($book->category == "F") {echo "checked";}?>>
-            <label class="form-check-label" for="category">Fiction</label>
+          <input class="<?php echo isset($category) ? 'form-check-input is-invalid' : 'form-check-input'; ?>" type="radio" name="category" id="category" value="F"
+          <?php if($book->category == "F") {echo "checked";}?>>
+            <label class="form-check-label" for="category">
+              Fiction
+            </label>
           </div>
           <div class="form-check">
-            <input class="form-check-input" type="radio" name="category" id="category" value="NF"
+            <input class="<?php echo isset($category) ? 'form-check-input is-invalid' : 'form-check-input'; ?>" type="radio" name="category" id="category" value="NF"
             <?php if($book->category == "NF") {echo "checked";}?>>
-            <label class="form-check-label" for="category">Non-fiction</label>
+            <label class="form-check-label" for="category">
+              Non-fiction
+            </label>
+            <?php echo isset($category) ? "<div class=\"invalid-feedback\">$category</div>" : ""; ?>
           </div>
         </div>
       </div>
