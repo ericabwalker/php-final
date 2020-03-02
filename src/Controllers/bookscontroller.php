@@ -19,7 +19,7 @@ class BooksController
         $new_book->category = $category;
         $result = $new_book->save();
         if ($result === false) {
-            return $this->view('add', [], $new_book->errors);
+            return $this->view('add', ["book" => $new_book], $new_book->errors);
         }
         header("Location: display");
     }
