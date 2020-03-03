@@ -5,11 +5,12 @@ extract($errors);
 ?>
 <h1>Edit a Book</h1>
 <div class="container">
-  <form method="POST" action="/update?bookID=<?php echo $book->bookID?>">
+  <form method="POST">
     <div class="form-group row">
       <label for="bookID" class="col-sm-1 col-form-label">Book ID</label>
-      <div class="col-sm-5">
-        <input type="text" class="form-control" id="bookID" name="bookID" value="<?php echo $book->bookID?>"readonly>
+      <div class="col-sm-5"> 
+        <input type="text" class="<?php echo isset($bookID) ? 'form-control is-invalid' : 'form-control'; ?>" id="bookID" name="bookID" value="<?php echo $book->bookID?>" readonly>
+        <?php echo isset($bookID) ? "<div class=\"invalid-feedback\">$bookID</div>" : ""; ?>
       </div>
     </div>
     <div class="form-group row">

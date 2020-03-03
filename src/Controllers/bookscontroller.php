@@ -6,17 +6,20 @@ use Ericabwalker\PHPfinal\Models\Book;
 
 class BooksController
 {
+    function get_book_id()
+    {
+        $uri = $_SERVER['REQUEST_URI'];
+        $explosion = explode('?', $uri);
+        return explode("=", $explosion[1])[1];
+    }
+
     function add_book()
     {
-        $title = $_POST['title'];
-        $author = $_POST['author'];
-        $pages = $_POST['pages'];
-        $category = $_POST['category'];
         $new_book = new Book();
-        $new_book->title = $title;
-        $new_book->author = $author;
-        $new_book->pages = $pages;
-        $new_book->category = $category;
+        $new_book->title = $_POST['title'];
+        $new_book->author = $_POST['author'];
+        $new_book->pages = $_POST['pages'];
+        $new_book->category = $_POST['category'];
         $result = $new_book->save();
         if ($result === false) {
             return $this->view('add', ["book" => $new_book], $new_book->errors);
@@ -26,8 +29,7 @@ class BooksController
 
     function display_books()
     {
-        $book = new Book();
-        $result = $book->findAll();
+        $result = Book::findAll();
         $this->view('display', ["books" => $result]);
     }
 
@@ -41,43 +43,28 @@ class BooksController
     function delete_book()
     {
         $book = new Book();
-        $bookID = $_POST['Books'][0];
-        $book->destroy($bookID);
+        $book->bookID = $_POST['Books'][0];
+        $book->destroy();
         header("Location: /display");
     }
 
     function display_one_book()
     {
-        $uri = $_SERVER['REQUEST_URI'];
-        $explosion = explode('?', $uri);
-        $bookID = explode("=", $explosion[1]);
-        $book = new Book();
-        $book_to_update = $book->find($bookID[1]);
+        $bookID = $this->get_book_id();
+        $book_to_update = Book::find($bookID);
         $this->view('update', ["book" => $book_to_update]);
     }
 
     function update_book()
     {
-        $title = $_POST['title'];
-        $author = $_POST['author'];
-        $pages = $_POST['pages'];
-        $category = $_POST['category'];
-        $uri = $_SERVER['REQUEST_URI'];
-        $explosion = explode('?', $uri);
-        $bookID = explode("=", $explosion[1]);
         $updatedbook = new Book();
-        $updatedbook->bookID = $bookID[1];
-        $update_result = $updatedbook->update((int)$bookID[1]);
-        if ($update_result == true) {
-            $updatedbook->title = $title;
-            $updatedbook->author = $author;
-            $updatedbook->pages = $pages;
-            $updatedbook->category = $category;
-            $result = $updatedbook->save();
-        } else {
-            header("Location: /display");
-        }
-        if ($result === false) {
+        $updatedbook->bookID = $this->get_book_id();
+        $updatedbook->title = $_POST['title'];
+        $updatedbook->author = $_POST['author'];
+        $updatedbook->pages = $_POST['pages'];
+        $updatedbook->category = $_POST['category'];
+        $update_result = $updatedbook->update();
+        if ($update_result == false) {
             return $this->view('update', ["book" => $updatedbook], $updatedbook->errors);
         } else {
             header("Location: /display");

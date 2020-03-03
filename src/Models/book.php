@@ -24,7 +24,7 @@ class Book
         }
     }
 
-    public static function find(int $bookID): ?Book
+    public static function find($bookID): ?Book
     {
         $book = new static();
         $sql = 'SELECT title, author, pages, category FROM Books WHERE bookID = ?';
@@ -76,22 +76,22 @@ class Book
         }
     }
 
-    public function update(int $bookID)
+    public function update()
     {
-        $book = new Book();
-        $result = $book->find($bookID);
+        $result = $this->find($this->bookID);
         if ($result == null) {
+            $this->set_errors(['bookID' => "Book with ID " . $this->bookID . " not found."]);
             return false;
         } else {
-            return true;
+            return $this->save();
         }
     }
 
-    public function destroy(int $bookID)
+    public function destroy()
     {
         $sql = 'DELETE FROM Books WHERE bookID = ?';
         $statement = $this->database->prepare($sql);
-        $statement->execute([$bookID]);
+        $statement->execute([$this->bookID]);
     }
 
     public function validate()
