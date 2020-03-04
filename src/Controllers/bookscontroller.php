@@ -40,7 +40,7 @@ class BooksController
         return $books->findAll();
     }
 
-    protected function deleteBook() // PROTECTED OR PUBLIC?
+    public function deleteBook()
     {
         $book = new Book();
         $book->bookID = $_POST['Books'][0];

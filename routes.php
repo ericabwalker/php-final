@@ -4,15 +4,15 @@ use Ericabwalker\PHPfinal\Router;
 
 $routes = [
     'GET' => [
-        '/display' => 'BooksController@display_books',
-        '/add' => 'BooksController@add_book_form',
-        '/delete' => 'BooksController@display_titles',
-        '/update' => 'BooksController@display_one_book',
+        '/display' => 'BooksController@displayBooks',
+        '/add' => 'BooksController@addBookForm',
+        '/delete' => 'BooksController@displayTitles',
+        '/update' => 'BooksController@displayOneBook',
     ],
     'POST' => [
-        '/add' => 'BooksController@add_book',
-        '/update' => 'BooksController@update_book',
-        '/delete' => 'BooksController@delete_book',
+        '/add' => 'BooksController@addBook',
+        '/update' => 'BooksController@updateBook',
+        '/delete' => 'BooksController@deleteBook',
     ],
 ];
 

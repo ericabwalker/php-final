@@ -87,7 +87,7 @@ class Book
         }
     }
 
-    public function destroy() // PROTECTED OR PUBLIC?
+    public function destroy()
     {
         $sql = 'DELETE FROM Books WHERE bookID = ?';
         $statement = $this->database->prepare($sql);
