@@ -9,28 +9,32 @@ extract($errors);
     <div class="form-group row">
       <label for="bookID" class="col-sm-1 col-form-label">Book ID</label>
       <div class="col-sm-5"> 
-        <input type="text" class="<?php echo isset($bookID) ? 'form-control is-invalid' : 'form-control'; ?>" id="bookID" name="bookID" value="<?php echo $book->bookID?>" readonly>
+        <input type="text" class="<?php echo isset($bookID) ? 'form-control is-invalid' : 'form-control'; ?>" 
+        id="bookID" name="bookID" value="<?php echo $book->bookID?>" readonly>
         <?php echo isset($bookID) ? "<div class=\"invalid-feedback\">$bookID</div>" : ""; ?>
       </div>
     </div>
     <div class="form-group row">
       <label for="title" class="col-sm-1 col-form-label">Title</label>
       <div class="col-sm-5">
-        <input type="text" class="<?php echo isset($title) ? 'form-control is-invalid' : 'form-control'; ?>" id="title" name="title" value="<?php echo $book->title?>">
+        <input type="text" class="<?php echo isset($title) ? 'form-control is-invalid' : 'form-control'; ?>" 
+        id="title" name="title" value="<?php echo $book->title?>">
         <?php echo isset($title) ? "<div class=\"invalid-feedback\">$title</div>" : ""; ?>
       </div>
     </div>
     <div class="form-group row">
       <label for="author" class="col-sm-1 col-form-label">Author</label>
       <div class="col-sm-5">
-        <input type="text" class="<?php echo isset($author) ? 'form-control is-invalid' : 'form-control'; ?>" id="author" name="author" value="<?php echo $book->author?>">
+        <input type="text" class="<?php echo isset($author) ? 'form-control is-invalid' : 'form-control'; ?>" 
+        id="author" name="author" value="<?php echo $book->author?>">
         <?php echo isset($author) ? "<div class=\"invalid-feedback\">$author</div>" : ""; ?>
       </div>
     </div>
     <div class="form-group row">
       <label for="pages" class="col-sm-1 col-form-label">Pages</label>
       <div class="col-sm-2">
-        <input type="text" class="<?php echo isset($pages) ? 'form-control is-invalid' : 'form-control'; ?>" id="pages" name="pages" value="<?php echo $book->pages?>">
+        <input type="text" class="<?php echo isset($pages) ? 'form-control is-invalid' : 'form-control'; ?>" 
+        id="pages" name="pages" value="<?php echo $book->pages?>">
         <?php echo isset($pages) ? "<div class=\"invalid-feedback\">$pages</div>" : ""; ?>
       </div>
     </div>

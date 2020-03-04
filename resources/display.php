@@ -18,7 +18,8 @@ include "templates/header.php";
       <?php
       foreach ($books as $row) {
         echo "<tr> <td>" . $row['title'] . "</td><td>" . $row['author'] . "</td><td>" .
-          $row['pages'] . "</td><td>" . $row['category'] . "</td><td><a href=\"update?bookID=" . $row['bookID'] . "\">Edit</a></td></tr>";
+          $row['pages'] . "</td><td>" . $row['category'] . "</td><td><a href=\"update?bookID=" . 
+          $row['bookID'] . "\">Edit</a></td></tr>";
       }
       ?>
     </tbody>
