@@ -15,7 +15,7 @@ class Book
     public $database;
     public $errors = [];
 
-    function __construct()
+    public function __construct()
     {
         try {
             $this->database = new PDO('mysql:dbname=bookList;host=mysql', 'modules', 'secret');
@@ -80,14 +80,14 @@ class Book
     {
         $result = $this->find($this->bookID);
         if ($result == null) {
-            $this->set_errors(['bookID' => "Book with ID " . $this->bookID . " not found."]);
+            $this->setErrors(['bookID' => "Book with ID " . $this->bookID . " not found."]);
             return false;
         } else {
             return $this->save();
         }
     }
 
-    public function destroy()
+    public function destroy() // PROTECTED OR PUBLIC?
     {
         $sql = 'DELETE FROM Books WHERE bookID = ?';
         $statement = $this->database->prepare($sql);
@@ -110,13 +110,13 @@ class Book
             $errors_list['category'] = "Property 'category' must not be null.";
         }
         if (count($errors_list) > 0) {
-            $this->set_errors($errors_list);
+            $this->setErrors($errors_list);
             return false;
         }
         return true;
     }
 
-    public function set_errors($error): ?array
+    public function setErrors($error): ?array
     {
         $this->errors = array_merge($this->errors, $error);
         return $this->errors;

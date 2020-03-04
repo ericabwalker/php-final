@@ -6,14 +6,14 @@ use Ericabwalker\PHPfinal\Models\Book;
 
 class BooksController
 {
-    function get_book_id()
+    public function getBookID()
     {
         $uri = $_SERVER['REQUEST_URI'];
         $explosion = explode('?', $uri);
         return explode("=", $explosion[1])[1];
     }
 
-    function add_book()
+    public function addBook()
     {
         $new_book = new Book();
         $new_book->title = $_POST['title'];
@@ -27,20 +27,20 @@ class BooksController
         header("Location: display");
     }
 
-    function display_books()
+    public function displayBooks()
     {
         $result = Book::findAll();
         $this->view('display', ["books" => $result]);
     }
 
-    function display_titles()
+    public function displayTitles()
     {
         $this->view('delete');
         $books = new Book;
         return $books->findAll();
     }
 
-    function delete_book()
+    protected function deleteBook() // PROTECTED OR PUBLIC?
     {
         $book = new Book();
         $book->bookID = $_POST['Books'][0];
@@ -48,17 +48,17 @@ class BooksController
         header("Location: /display");
     }
 
-    function display_one_book()
+    public function displayOneBook()
     {
-        $bookID = $this->get_book_id();
+        $bookID = $this->getBookID();
         $book_to_update = Book::find($bookID);
         $this->view('update', ["book" => $book_to_update]);
     }
 
-    function update_book()
+    public function updateBook()
     {
         $updatedbook = new Book();
-        $updatedbook->bookID = $this->get_book_id();
+        $updatedbook->bookID = $this->getBookID();
         $updatedbook->title = $_POST['title'];
         $updatedbook->author = $_POST['author'];
         $updatedbook->pages = $_POST['pages'];
@@ -71,12 +71,12 @@ class BooksController
         }
     }
 
-    function add_book_form()
+    public function addBookForm()
     {
         $this->view('add');
     }
 
-    function view($page, $data = [], $errors = [])
+    public function view($page, $data = [], $errors = [])
     {
         extract($data);
         include_once __DIR__ . '/../../resources/' . $page . '.php';
