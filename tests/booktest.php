@@ -7,10 +7,11 @@ require_once 'vendor/autoload.php';
 class BookTest extends PHPUnit\Framework\TestCase
 {
     /** @test */
-    public function confirmBookCannotHaveEmptyPropertiesInOrderToBeValid()
+    public function confirms_book_cannot_have_empty_properties_in_order_to_be_valid()
     {
         //Create a new object and assert that validation initially fails.
         $book = new Book();
+        $book->validate();
         $this->assertFalse($book->validate());
 
         //Assert that an error exists for each particular property where validation is failing.
@@ -23,7 +24,6 @@ class BookTest extends PHPUnit\Framework\TestCase
         $faker = Faker\Factory::create();
         $book->title = $faker->sentence;
         $book->validate();
-        var_dump($book);
         $this->assertArrayNotHasKey('title', $book->errors);
 
         $book->author = $faker->name;
@@ -34,7 +34,7 @@ class BookTest extends PHPUnit\Framework\TestCase
         $book->validate();
         $this->assertArrayNotHasKey('pages', $book->errors);
 
-        $book->category = $faker->randomElement($array = array ('F','NF'));
+        $book->category = $faker->randomElement($array = array('F', 'NF'));
         $book->validate();
         $this->assertArrayNotHasKey('category', $book->errors);
 

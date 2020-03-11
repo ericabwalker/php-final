@@ -96,6 +96,7 @@ class Book
 
     public function validate()
     {
+        $this->errors = [];
         $errors_list = [];
         if ($this->title == null) {
             $errors_list['title'] = "Property 'title' must not be null.";
