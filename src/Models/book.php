@@ -20,6 +20,8 @@ class Book
         try {
             $this->database = new PDO('mysql:dbname=bookList;host=mysql', 'modules', 'secret');
         } catch (PDOException $e) {
+            $this->database = new PDO('mysql:dbname=bookList;host=localhost:3307', 'modules', 'secret');
+        } catch (PDOException $e) {
             echo 'Connection failed: ' . $e->getMessage();
         }
     }
