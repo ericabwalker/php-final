@@ -61,7 +61,10 @@ class Book
             if ($this->bookID == null) {
                 $sql = 'INSERT INTO Books (title, author, pages, category) VALUES (?,?,?,?)';
                 $statement = $this->database->prepare($sql);
+                $this->database->beginTransaction();
                 $statement->execute([$this->title, $this->author, $this->pages, $this->category]);
+                $this->bookID = $this->database->lastInsertId();
+                $this->database->commit();
             } else {
                 $sql = 'UPDATE Books SET title=?, author=?, pages=?, category=? WHERE bookID = ?';
                 $statement = $this->database->prepare($sql);

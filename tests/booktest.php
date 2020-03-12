@@ -59,7 +59,7 @@ class BookTest extends PHPUnit\Framework\TestCase
         $book->save();
         $newRecordsTotal = $recordsInDatabase + 1;
         $this->assertCount($newRecordsTotal, Book::findAll());
-        // $this->assertInstanceOf(Book::class, Book::find($book->bookID));
+        $this->assertNotNull(Book::find($book->bookID));
 
 
         // Update the object and call save(); assert that the data in relevant table row has been 
@@ -90,6 +90,7 @@ class BookTest extends PHPUnit\Framework\TestCase
 
 
         // Call the destroy() method on the model and assert that the record has been removed from the database table.
+        $this->assertNotNull(Book::find($book->bookID));
         $book->destroy();
         $deletedRecordsTotal = $newRecordsTotal - 1;
 
