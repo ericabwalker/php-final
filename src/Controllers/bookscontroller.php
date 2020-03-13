@@ -1,8 +1,10 @@
 <?php
-
 namespace Ericabwalker\PHPfinal\Controllers;
 
 use Ericabwalker\PHPfinal\Models\Book;
+use Ericabwalker\PHPfinal\Persistence\MySQLPersistence;
+// use Ericabwalker\PHPfinal\Persistence\MySQLPersistence;
+use Ericabwalker\PHPfinal\Repositories\BookRepository;
 
 class BooksController
 {
@@ -29,7 +31,10 @@ class BooksController
 
     public function displayBooks()
     {
-        $result = Book::findAll();
+        // $result = Book::findAll();
+        $mysql = new MySQLPersistence();
+        $repo = new BookRepository($mysql);
+        $result = $repo->findAll();
         $this->view('display', ["books" => $result]);
     }
 
