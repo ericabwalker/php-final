@@ -3,6 +3,7 @@
 namespace Ericabwalker\PHPfinal\Persistence;
 
 use Ericabwalker\PHPfinal\Models\Book;
+use phpDocumentor\Reflection\Types\Boolean;
 
 interface Persistence
 {
@@ -11,12 +12,7 @@ interface Persistence
 
     public function findAll(): ?array;
 
-    public function save(); //boolean?
+    public function save(Book $book): ?Book;
 
-    public function update();
-
-    public function destroy();
-
-    //validate and/or setErrors methods?
-
+    public function destroy(int $bookID);
 }

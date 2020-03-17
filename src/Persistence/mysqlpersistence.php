@@ -31,21 +31,51 @@ class MySQLPersistence implements Persistence
         return $all_books;
     }
 
-    public function find(int $bookID): ?Book
+    public function find($bookID): ?Book
     {
-        $book = new Book();
+        $sql = 'SELECT title, author, pages, category FROM Books WHERE bookID = ?';
+        $statement = $this->database->prepare($sql);
+        $statement->execute([$bookID]);
+        $find_result = $statement->fetch();
+        if ($find_result === false) {
+            return null;
+        }
+        $foundBook = new Book($find_result['title'], $find_result['author'], $find_result['pages'], $find_result['category']);
+        $foundBook->bookID = $bookID;
+        return $foundBook;
+    }
+
+    public function save(Book $book): ?Book
+    {
+        if ($book->bookID == null) {
+            $sql = 'INSERT INTO Books (title, author, pages, category) VALUES (?,?,?,?)';
+            $statement = $this->database->prepare($sql);
+            $this->database->beginTransaction();
+            $statement->execute([$book->title, $book->author, $book->pages, $book->category]);
+            $this->bookID = $this->database->lastInsertId();
+            $this->database->commit();
+        } else {
+            $result = $this->find($book->bookID);
+            if ($result == null) {
+                $book->setErrors(['bookID' => "Book with ID " . $this->bookID . " not found."]);
+                return $book;
+            }
+            $sql = 'UPDATE Books SET title=?, author=?, pages=?, category=? WHERE bookID = ?';
+            $statement = $this->database->prepare($sql);
+            $statement->bindValue(":title", $this->title, PDO::PARAM_STR);
+            $statement->bindValue(":author", $this->author, PDO::PARAM_STR);
+            $statement->bindValue(":pages", $this->pages, PDO::PARAM_INT);
+            $statement->bindValue(":category", $this->category, PDO::PARAM_STR);
+            $statement->bindValue(":bookID", $this->bookID, PDO::PARAM_INT);
+            $statement->execute([$book->title, $book->author, $book->pages, $book->category, $book->bookID]);
+        }
         return $book;
     }
 
-    public function save()
+    public function destroy(int $bookID)
     {
-    } //boolean?
-
-    public function update()
-    {
-    }
-
-    public function destroy()
-    {
+        $sql = 'DELETE FROM Books WHERE bookID = ?';
+        $statement = $this->database->prepare($sql);
+        $statement->execute([$bookID]);
     }
 }

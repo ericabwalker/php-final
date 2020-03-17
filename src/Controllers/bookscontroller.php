@@ -1,13 +1,18 @@
 <?php
 namespace Ericabwalker\PHPfinal\Controllers;
 
-use Ericabwalker\PHPfinal\Models\Book;
 use Ericabwalker\PHPfinal\Persistence\MySQLPersistence;
-// use Ericabwalker\PHPfinal\Persistence\MySQLPersistence;
 use Ericabwalker\PHPfinal\Repositories\BookRepository;
 
 class BooksController
-{
+{   
+    private $repo;
+
+    public function __construct()
+    {
+        $this->repo = new BookRepository(new MySQLPersistence());
+    }
+
     public function getBookID()
     {
         $uri = $_SERVER['REQUEST_URI'];
@@ -17,13 +22,8 @@ class BooksController
 
     public function addBook()
     {
-        $new_book = new Book();
-        $new_book->title = $_POST['title'];
-        $new_book->author = $_POST['author'];
-        $new_book->pages = $_POST['pages'];
-        $new_book->category = $_POST['category'];
-        $result = $new_book->save();
-        if ($result === false) {
+        $new_book = $this->repo->save($_POST['title'], $_POST['author'], $_POST['pages'], $_POST['category']);
+        if (count($new_book->errors) > 0) {
             return $this->view('add', ["book" => $new_book], $new_book->errors);
         }
         header("Location: display");
@@ -31,46 +31,34 @@ class BooksController
 
     public function displayBooks()
     {
-        // $result = Book::findAll();
-        $mysql = new MySQLPersistence();
-        $repo = new BookRepository($mysql);
-        $result = $repo->findAll();
-        $this->view('display', ["books" => $result]);
+        $this->view('display', ["books" => $this->repo->findAll()]);
     }
 
     public function displayTitles()
     {
         $this->view('delete');
-        $books = new Book;
-        return $books->findAll();
+        return $this->repo->findAll();
     }
 
     public function deleteBook()
     {
-        $book = new Book();
-        $book->bookID = $_POST['Books'][0];
-        $book->destroy();
+        $bookID = $_POST['Books'][0];
+        $this->repo->destroy($bookID);
         header("Location: /display");
     }
 
     public function displayOneBook()
     {
         $bookID = $this->getBookID();
-        $book_to_update = Book::find($bookID);
+        $book_to_update = $this->repo->find($bookID);
         $this->view('update', ["book" => $book_to_update]);
     }
 
     public function updateBook()
     {
-        $updatedbook = new Book();
-        $updatedbook->bookID = $this->getBookID();
-        $updatedbook->title = $_POST['title'];
-        $updatedbook->author = $_POST['author'];
-        $updatedbook->pages = $_POST['pages'];
-        $updatedbook->category = $_POST['category'];
-        $update_result = $updatedbook->update();
-        if ($update_result == false) {
-            return $this->view('update', ["book" => $updatedbook], $updatedbook->errors);
+        $update_result = $this->repo->update($this->getBookID(), $_POST['title'], $_POST['author'], $_POST['pages'], $_POST['category']);
+        if (count($update_result->errors) > 0) {
+            return $this->view('update', ["book" => $update_result], $update_result->errors);
         } else {
             header("Location: /display");
         }
