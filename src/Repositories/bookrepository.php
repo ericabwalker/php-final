@@ -3,13 +3,13 @@
 namespace Ericabwalker\PHPfinal\Repositories;
 
 use Ericabwalker\PHPfinal\Models\Book;
-use Ericabwalker\PHPfinal\Persistence\MySQLPersistence;
+use Ericabwalker\PHPfinal\Persistence\Persistence;
 
 class BookRepository
 {
     private $persistence;
 
-    public function __construct(MySQLPersistence $persistence)
+    public function __construct(Persistence $persistence)
     {
         $this->persistence = $persistence;
     }
@@ -28,7 +28,7 @@ class BookRepository
     {
         $book = new Book($title, $author, $pages, $category);
         if ($book->validate()) {
-            $this->persistence->save($book);
+            return $this->persistence->save($book);
         }
         return $book;
     }
@@ -38,7 +38,7 @@ class BookRepository
         $book = new Book($title, $author, $pages, $category);
         $book->bookID = $bookID;
         if ($book->validate()) {
-            $this->persistence->save($book);
+            return $this->persistence->save($book);
         }
         return $book;
     }

@@ -3,7 +3,6 @@
 namespace Ericabwalker\PHPfinal\Persistence;
 
 use Ericabwalker\PHPfinal\Models\Book;
-use phpDocumentor\Reflection\Types\Boolean;
 
 interface Persistence
 {
