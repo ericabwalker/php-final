@@ -71,7 +71,7 @@ class Book
      * 
      * @return array 
      */
-    public function setErrors($error): array
+    public function setErrors(array $error): array
     {
         $this->errors = array_merge($this->errors, $error);
         return $this->errors;

@@ -6,7 +6,11 @@ use Ericabwalker\PHPfinal\Controllers\BooksController;
 
 class Router
 {
-
+    /**
+     * @param array $routes Multidimensional array of routes for 'GET' and 'POST' requests. 
+     * 
+     * @return void 
+     */
     function execute($routes)
     {
         $method = $_SERVER['REQUEST_METHOD'];

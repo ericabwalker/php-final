@@ -9,8 +9,12 @@ use PDOException;
 
 class MySQLPersistence implements Persistence
 {
+    /** @type PDO $database */
     public $database;
 
+    /**
+     * @throws PDOException if unable to connect to database. 
+     */
     public function __construct()
     {
         try {
@@ -22,6 +26,11 @@ class MySQLPersistence implements Persistence
         }
     }
 
+    /**
+     * Finds all the books in the database, returns null if empty.
+     * 
+     * @return array|null
+     */
     public function findAll(): ?array
     {
         $sql = 'SELECT bookID, title, author, pages, category FROM Books ORDER BY title';
@@ -31,7 +40,12 @@ class MySQLPersistence implements Persistence
         return $all_books;
     }
 
-    public function find($bookID): ?Book
+    /**
+     * @param int $bookID ID of book to find.
+     * 
+     * @return Book|null returns book object with given ID or null if book doesn't exist.
+     */
+    public function find(int $bookID): ?Book
     {
         $sql = 'SELECT title, author, pages, category FROM Books WHERE bookID = ?';
         $statement = $this->database->prepare($sql);
@@ -45,7 +59,12 @@ class MySQLPersistence implements Persistence
         return $foundBook;
     }
 
-    public function save(Book $book): ?Book
+    /**
+     * @param Book $book Book to be saved or updated. 
+     * 
+     * @return Book 
+     */
+    public function save(Book $book): Book
     {
         if ($book->bookID == null) {
             $sql = 'INSERT INTO Books (title, author, pages, category) VALUES (?,?,?,?)';
@@ -72,6 +91,9 @@ class MySQLPersistence implements Persistence
         return $book;
     }
 
+    /**
+     * @param int $bookID ID of book to delte. 
+     */
     public function destroy(int $bookID)
     {
         $sql = 'DELETE FROM Books WHERE bookID = ?';
